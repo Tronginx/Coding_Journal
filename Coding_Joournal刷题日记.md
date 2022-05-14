@@ -2,7 +2,7 @@
 
 ## Array 数组
 
-#### 5.8
+5.8
 
 占用连续的内存，查询O（1），插入删除O（N）
 
@@ -76,7 +76,7 @@ class Solution {
 
 ## Linked List 链表
 
-#### 5.9
+5.9
 
 203. ### **Remove Linked List Elements**
 
@@ -128,11 +128,9 @@ class Solution {
 
 Will come back later
 
+## LinkedList Revisit 
 
-
-#### 5.12
-
-### LinkedList Revisit 
+5.12
 
 What is linked list?
 
@@ -162,7 +160,7 @@ public class ListNode {
 
 Delete a node
 
-203 Remove Linked List Elements
+#### 203 Remove Linked List Elements
 
 ```java
 /**
@@ -212,13 +210,13 @@ class Solution {
 
 
 
-707.Design Linked List
+#### 707.Design Linked List
 
 - remember to check boundary every time!!!
 
 - `index <size || index >= size` . We need to pay extra attention to index >= size, size the object is 0-indexed.
 
-206.Reverse Linked List
+#### 206.Reverse Linked List
 
 ```java
 /**
@@ -295,7 +293,7 @@ class Solution {
 }
 ```
 
-24.Swap Nodes in Pairs
+#### 24.Swap Nodes in Pairs
 
 ```java
 /**
@@ -328,7 +326,7 @@ class Solution {
 }
 ```
 
-19.Remove Nth Node From End of List
+#### 19.Remove Nth Node From End of List
 
 ```java
 /**
@@ -379,7 +377,7 @@ class Solution {
 }
 ```
 
-160.tersection of Two Linked Lists
+#### 160.tersection of Two Linked Lists
 
 Brute Force
 
@@ -455,7 +453,7 @@ public class Solution {
 }
 ```
 
-142.Linked List Cycle II
+#### 142.Linked List Cycle II
 
 ```java
 /**
@@ -487,17 +485,79 @@ public class Solution {
                     index2 = index2.next;
                 }
                 return index1;
-            }
-            
+            }           
         }
-        
-        
-        
-        
-        return null;
-        
-        
+        return null;      
     }
 }
 ```
 
+## Hash Table 哈希表
+
+5.13
+
+#### 242.Valid Anagram
+
+Approach 1: sorting 
+
+char[] str1 = s.toCharArray();
+
+Arrays.sort(str1);
+
+- undestand how to convert a string to char array
+- understand Arrays.sort, usually takes O(nlogn)
+- undestand Arrays.equals to compare arrays.
+
+```java
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if(s.length() != t.length()){
+            return false;
+        }
+        
+        char[] sArray = s.toCharArray();
+        char[] tArray = t.toCharArray();
+        
+        Arrays.sort(sArray);
+        Arrays.sort(tArray);
+        
+        return Arrays.equals(sArray,tArray);
+    }
+}
+```
+
+Approach 2: counter 
+
+- We set 26 position for 26 characters.
+- for int i = 0; i<s.length();i++
+  - counter[s.charAt[i] - 'a'] ++
+  - counter[t.charAt[i] - 'a'] --
+- for(int count : counter)
+  - if(count != 0) return false;
+
+```java
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if(s.length() != t.length()){
+            return false;
+        }
+        int[] counter = new int[26];
+        
+        for(int i=0; i<s.length();i++){
+           counter[s.charAt(i)-'a'] ++;
+           counter[t.charAt(i)-'a'] --;
+        }
+        
+        for(int count:counter){
+            if(count != 0){
+                return false;
+            }
+        }
+                
+        
+        return true;
+    }
+}
+```
+
+#### 1002.Find Common Characters
