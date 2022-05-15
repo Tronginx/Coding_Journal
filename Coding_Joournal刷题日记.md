@@ -561,3 +561,89 @@ class Solution {
 ```
 
 #### 1002.Find Common Characters
+
+5.14
+
+暂时无法理解
+
+#### 349.Intersection of Two Arrays
+
+- build a hash set to store all the nums in nums1, since hash set only allows unique elements, we don't need to worry about duplicates
+- build result hash set to store intersection of two arrays
+- we use iterator of hash set to covert result hash set to result array which is required return type.
+
+```java
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        if(nums1 == null || nums2 == null){
+            return new int[0];
+        }
+        
+        HashSet<Integer> set1 = new HashSet<>();
+        HashSet<Integer> resSet = new HashSet<>();
+        
+        for(int i : nums1){
+            set1.add(i);
+        }
+        
+        for(int i : nums2){
+            if(set1.contains(i)){
+                resSet.add(i);
+            }
+        }
+        
+        int[] res = new int[resSet.size()];
+        int index = 0;
+        for(int entry : resSet){
+            res[index++] = entry;
+
+        }
+        
+        return res;
+        
+        
+    }
+}
+```
+
+#### 202.Happy Number
+
+- calculate the sum of squre of each digit
+- while true
+  - If happyNumber = 1 return true;
+  - if happyNumber = prev return false;
+
+```java
+class Solution {
+    public boolean isHappy(int n) {
+        
+        HashSet<Integer> set = new HashSet<>();
+        while(true){
+            int sum = calSum(n); 
+            if(sum == 1){
+                return true;
+            }
+            if(set.contains(sum)){
+                return false;
+            }
+            else{
+                set.add(sum);
+            }
+            n = sum;   
+        }   
+    }
+    
+    public int calSum(int n){
+        int result = 0;
+        while(n>0){
+           int temp = n%10;
+           result += temp*temp;
+           n = n/10;
+        }     
+        return result;       
+    }    
+}
+```
+
+
+
