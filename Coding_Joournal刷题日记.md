@@ -647,3 +647,81 @@ class Solution {
 
 
 
+#### 1.Two Sum
+
+- if nums == null; return null
+- for i=0;i<nums.length;i++
+  - calculate diff = target - nums[i]
+  - look up diff in the Map to decide if the required partner exsited
+  - if existed: return i and map.get(diff)
+  - map.put(nums[i],i)
+
+```java
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int[] res = new int[2];
+        if(nums == null){
+            return res;
+        }
+        
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            int dif = target - nums[i];
+            if(map.containsKey(dif)){
+                res[0] = i;
+                res[1] = map.get(dif);
+            }
+            map.put(nums[i],i);
+        }
+        return res;
+    }
+}
+```
+
+#### 454.4Sum II
+
+```java
+class Solution {
+    public int fourSumCount(int[] nums1, int[] nums2, int[] nums3, int[] nums4) {
+        int cnt =0;
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int a:nums1){
+            for(int b:nums2){
+                map.put(a + b, map.getOrDefault(a + b, 0) + 1);
+            }
+        }        
+         for(int c : nums3){
+            for(int d : nums4){
+                cnt += map.getOrDefault(-(c+d),0);
+            }
+        }       
+        return cnt;
+    }     
+  }
+
+```
+
+#### 383.Ransom Note
+
+```java
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        int[] counter = new int[26];      
+        for(int i=0;i<magazine.length();i++){
+            counter[magazine.charAt(i)-'a']++;
+        }
+        for(int i=0; i<ransomNote.length();i++){
+            char x = ransomNote.charAt(i);
+            counter[x-'a']--;
+            
+        }
+        for(int x:counter){
+            if(x<0){
+                return false;
+            }
+        }
+        return true;
+    }
+}
+```
+
