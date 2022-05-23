@@ -734,3 +734,48 @@ class Solution {
 5.18
 
 #### 344.Reverse String
+
+5.21
+
+```java
+class Solution {
+    public void reverseString(char[] s) {    
+        int len = s.length;
+        if(len ==0 || len ==1){
+            return;
+        }
+            for(int i=0; i<len/2;i++){
+                char temp = s[i];
+                s[i] = s[len-i-1];
+                s[len-i-1] = temp;
+            }
+    }
+}
+```
+
+#### 541.Reverse String II
+
+暂时不提
+
+#### 剑指offer 05 Replace Space with %20
+
+```java
+class Solution {
+    public String replaceSpace(String s) {
+        if (s == null) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder();
+        for(int i =0; i<s.length();i++){
+            if(s.charAt(i) == ' '){
+                sb.append("%20");
+            }
+            else{
+                sb.append(s.charAt(i));
+            }
+        }
+        return sb.toString();
+    }
+}
+```
+
